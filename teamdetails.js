@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(30),
         allowNull: false,
       },
-      team_created_date: {
-        type: DataTypes.STRING(15),
-        allowNull: false,
-      },
     });
   
     return TeamsDetails;

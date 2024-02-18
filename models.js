@@ -7,13 +7,22 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.usercred = require('../models/usercred')(sequelize, Sequelize);
+db.usercreds = require('../models/usercreds')(sequelize, Sequelize);
 db.teamsdetails = require('../models/teamsdetails')(sequelize, Sequelize);
 db.eventsdetails = require('../models/eventsdetails')(sequelize, Sequelize);
 
-// Move the association to the end of the file
-db.usercred.associate = (models) => {
-  db.usercred.hasOne(models.TeamsDetails, { foreignKey: 'team_id' });
+// Associations
+db.teamsdetails.associate = (models) => {
+  db.teamsdetails.belongsTo(models.usercreds, { foreignKey: 'team_id' });
+};
+
+db.eventsdetails.associate = (models) => {
+  db.eventsdetails.belongsTo(models.usercreds, { foreignKey: 'user_id' });
+};
+
+db.usercreds.associate = (models) => {
+  db.usercreds.hasOne(models.teamsdetails, { foreignKey: 'team_id' });
+  db.usercreds.hasOne(models.eventsdetails, { foreignKey: 'user_id' });
 };
 
 db.sequelize.sync({ alter: true });

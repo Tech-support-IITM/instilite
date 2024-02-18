@@ -4,7 +4,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
-app.use(require('./routes/login'));
+app.use(require('./login'));
 
 
 app.listen(PORT, () => {

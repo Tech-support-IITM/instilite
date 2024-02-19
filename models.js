@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const config = require('../config/config.json')['development'];
+const config = require('./config.json')['development'];
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 const db = {};
@@ -7,9 +7,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.usercreds = require('../models/usercreds')(sequelize, Sequelize);
-db.teamsdetails = require('../models/teamsdetails')(sequelize, Sequelize);
-db.eventsdetails = require('../models/eventsdetails')(sequelize, Sequelize);
+db.usercreds = require('./usercreds')(sequelize, Sequelize);
+db.teamsdetails = require('./teamsdetails')(sequelize, Sequelize);
+db.eventsdetails = require('./eventsdetails')(sequelize, Sequelize);
 
 // Associations
 db.teamsdetails.associate = (models) => {

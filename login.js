@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { generateJwtToken } = require('./utils');
 const router = express.Router();
-const db = require('../database/database');
+const db = require('./models');
 const bcrypt = require('bcrypt'); // For password comparison (assuming secure hashing elsewhere)
 
 router.post('/login', async (req, res) => {

@@ -61,6 +61,7 @@ CREATE TABLE `usercreds` (
 `user_password` varchar(20) NOT NULL,
 `user_role` varchar(10) DEFAULT '"student"',
 `user_access_token` varchar(10) DEFAULT '"denied"'
+`user_profile_desc` varchar(1000)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

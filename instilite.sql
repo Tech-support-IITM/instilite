@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 02:00 PM
+-- Generation Time: Feb 24, 2024 at 06:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,8 +46,20 @@ CREATE TABLE `eventsdetails` (
 
 CREATE TABLE `teamsdetails` (
   `team_id` varchar(40) NOT NULL,
-  `team_name` varchar(40) NOT NULL
+  `team_name` varchar(40) NOT NULL,
+  `team_desc` varchar(800) DEFAULT NULL,
+  `team_link` varchar(200) DEFAULT NULL,
+  `team_apps` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`team_apps`)),
+  `team_heads` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`team_heads`)),
+  `team_members` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`team_members`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teamsdetails`
+--
+
+INSERT INTO `teamsdetails` (`team_id`, `team_name`, `team_desc`, `team_link`, `team_apps`, `team_heads`, `team_members`) VALUES
+('pdc_id', 'pdc', 'pdc is a cool club. everyone should join pdc.', 'www.pdc.com', '{\"link1\":\"abc\", \"link2\":\"def\", \"link3\":\"ghi\"}', '{\"head1\":\"abc\", \"head2\":\"xyz\"}', '{\"member1\":\"medha\", \"member2\":\"rahul\"}');
 
 -- --------------------------------------------------------
 
@@ -71,8 +83,9 @@ CREATE TABLE `usercreds` (
 --
 
 INSERT INTO `usercreds` (`user_id`, `user_name`, `user_phone`, `user_password`, `user_role`, `user_access_token`, `linkedin_id`, `profile_desc`) VALUES
-('111', 'rahull', 1234567, 'qwertyuiop', '\"student\"', '\"denied\"', NULL, NULL),
-('123', 'rahul', 1234567, 'qwertyuiop', '\"student\"', '\"denied\"', NULL, NULL);
+('111', 'shwetha', 9008098987, 'password123', 'student', 'denied', 'https://ww.google.com', 'hello hi '),
+('123', 'rahul', 1234567, 'qwertyuiop', 'student', 'denied', NULL, NULL),
+('pdc_id', 'pdc', 9988787876, 'pdcpdc', 'team', 'denied', NULL, NULL);
 
 --
 -- Indexes for dumped tables
